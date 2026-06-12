@@ -1,112 +1,86 @@
-# Hi, I'm Rishabh 👋
+# 💳 Credit Card Fraud & Spending Analytics
 
-I'm an MS Computer Engineering grad from **Virginia Tech** (May 2026), specializing in AI and Data Analytics. I build things at the intersection of **data engineering, machine learning, and enterprise risk** — from LLM fine-tuning pipelines to fraud detection systems to GRC dashboards that actually get used.
-
-Before grad school I spent 2+ years at **Wipro** as a Cybersecurity Analyst, where I ran risk assessments, built compliance pipelines, and designed the dashboards that helped teams track what actually mattered. That background shapes how I approach ML work: I care about pipelines being reproducible, metrics being interpretable, and results being actionable.
-
-Currently open to **ML/AI Engineer** and **Data Analyst** roles in the US — I'm on OPT and available to start immediately.
+> SQL-driven fraud detection and spending analysis on 1M+ synthetic credit card transactions using DuckDB.
 
 ---
 
-## 🛠 Tech Stack
+## Business Questions Answered
 
-**Languages**
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=postgresql&logoColor=white)
-![MATLAB](https://img.shields.io/badge/MATLAB-0076A8?style=flat&logo=mathworks&logoColor=white)
-
-**ML / AI**
-
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
-![Keras](https://img.shields.io/badge/Keras-D00000?style=flat&logo=keras&logoColor=white)
-![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21E?style=flat&logo=huggingface&logoColor=black)
-
-**Data & Analytics**
-
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
-![Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?style=flat&logo=apachespark&logoColor=white)
-![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
-
-**Cloud & Tools**
-
-![Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=flat&logo=microsoftazure&logoColor=white)
-![ServiceNow](https://img.shields.io/badge/ServiceNow-62D84E?style=flat&logo=servicenow&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)
-
-**Certifications:** Azure SC-900 · AZ-900 · AI-900 · DP-900
+1. **Which categories drive the most spend — and the most fraud?**
+2. **How does fraud rate change month over month?**
+3. **Which individual transactions are anomalously large for that customer?**
+4. **Which states have the highest fraud concentration?**
+5. **How do we tier customers by risk exposure?**
+6. **Which merchants are most associated with fraud?**
+7. **What time of day do fraudulent transactions peak?**
 
 ---
 
-## 🔬 Featured Projects
+## Key Findings
 
-> *Projects marked \* are collaborative group work — I've described my specific contributions in each repo's README.*
-
----
-
-### 🤖 [Large-Scale Reasoning Optimization via LLM Fine-Tuning](https://github.com/RishCapitalent18/Project-Reasoning-SFT-LLM) *
-Fine-tuned **Qwen2.5-3B Instruct** using supervised fine-tuning (SFT) to improve multi-step reasoning reliability.
-
-- Built end-to-end data preparation and training pipelines with dataset normalization, validation, and YAML/Bash-driven configuration for reproducible runs
-- Automated evaluation workflows benchmarked against **AIME 2024/25** and **GPQA Diamond** — achieved **49.4% on GPQA Diamond** (a hard reasoning benchmark where many 7B+ models score below 40%)
-- `PyTorch` `Hugging Face` `YAML` `Bash`
+- Fraud is concentrated in **specific hours** (late night / early morning), not spread evenly across the day
+- Anomaly detection via customer-baseline comparison (`amt > 2× customer avg`) surfaces a disproportionate share of fraud
+- A small number of merchants account for a large fraction of total fraud dollar value
+- State-level fraud rates vary significantly — geographic clustering suggests coordinated fraud patterns
 
 ---
 
-### 🧠 [Hallucination Mitigation in LLMs — Knowledge Graphs + MoE](https://github.com/RishCapitalent18/Fact-Checking-QnA-System--CG-and-MOEs) *
-Designed a Knowledge-Graph-grounded Mixture-of-Experts QA system to reduce hallucinations in LLM outputs.
+## Tech Stack
 
-- Created and validated domain-specific datasets to analyze failure modes and expert routing behavior
-- Trained on **Qwen2.5-3B**, reducing training loss below **0.1**; deployed Streamlit dashboards to monitor accuracy and fairness trends
-- `PyTorch` `Knowledge Graphs` `Streamlit` `Qwen2.5`
-
----
-
-### 🚨 [Credit Card Fraud Detection — End-to-End ML Pipeline](https://github.com/RishCapitalent18/credit-card-fraud-detection-ml)
-Solo project. Built a fraud detection system combining **Self-Organizing Maps** for anomaly detection with a neural network classifier.
-
-- Optimized probability-based scoring pipeline; achieved **93.19% detection accuracy**
-- `TensorFlow` `Keras` `NumPy` `Pandas`
+- **DuckDB** — in-process SQL engine, no server required
+- **Python + pandas** — orchestration and CSV export
+- **SQL** — window functions, CTEs, aggregations, date truncation
 
 ---
 
-### 📦 [Real-Time Suspicious Baggage Detection — YOLO](https://github.com/RishCapitalent18/Suspicious-Baggage-Detection-System) *
-YOLOv5-based object detection system for identifying suspicious items in real-time baggage screening.
+## How to Run
 
-- Improved F1-confidence and precision-recall curves using focal loss; achieved **90.35% accuracy**
-- `YOLOv5` `Python` `OpenCV` `Streamlit`
+```bash
+# Install dependency
+pip install duckdb pandas
 
----
+# Run all analyses (outputs saved to results/)
+python analysis.py
+```
 
-## 💼 Work Highlights
-
-**Path Perception & Validation Engineer — Victor Tango SAE, Virginia Tech** *(Sep 2024 – Aug 2025)*
-Built a ROS-integrated MATLAB bench-testing framework to validate ADAS path perception pipelines. Engineered a PostgreSQL-backed Dijkstra routing system generating 4096-point waypoint arrays at ±1m centerline accuracy with <500ms response time.
-
-**Cybersecurity Analyst L2 — GRC, Risk & Data Analytics @ Wipro** *(Apr 2022 – Aug 2024)*
-Managed 140+ cybersecurity and cloud risk assessments through ServiceNow GRC. Designed risk-scoring models that surfaced 37% of critical risks earlier and cut remediation closure time by 25%. Built KPI dashboards used across compliance and security teams.
+Results are exported as CSVs to the `results/` folder, one file per analysis.
 
 ---
 
-## 🔧 Currently Working On
+## Project Structure
 
-- Cleaning up and documenting the **ADAS path validation framework** (MATLAB + ROS + PostgreSQL) — full repo coming soon
-- Expanding the **LLM reasoning project** with GRPO-based reinforcement fine-tuning experiments
-- Building a personal **risk analytics dashboard** that integrates public threat feeds with a lightweight scoring model
-
----
-
-## 📫 Let's Connect
-
-I'm actively looking for **ML/AI Engineer** and **Data Analyst** roles where I can contribute from day one. I'm on OPT — no sponsorship needed to start.
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-rishabh--karthik--ramesh-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rishabh-karthik-ramesh/)
-[![Email](https://img.shields.io/badge/Email-rishabhkramesh@gmail.com-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:rishabhkramesh@gmail.com)
+```
+credit-card-sql-analytics/
+├── analysis.py        # Runs all 7 queries, prints results, exports CSVs
+├── queries.sql        # Raw SQL queries with business question comments
+├── requirements.txt
+└── README.md
+```
 
 ---
 
-![Rishabh's GitHub Stats](https://github-readme-stats.vercel.app/api?username=RishCapitalent18&show_icons=true&theme=default&hide_border=true&count_private=true)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=RishCapitalent18&layout=compact&theme=default&hide_border=true)
+## Dataset
+
+Synthetic credit card transactions dataset from [Kaggle](https://www.kaggle.com/datasets/priyamchoksi/credit-card-transactions-dataset).
+
+- 1M+ transactions across real US merchant categories
+- Labeled fraud column (`is_fraud`) for ground truth validation
+- Covers cardholder demographics, merchant location, and transaction metadata
+
+---
+
+## SQL Techniques Used
+
+- `WITH` (CTEs) for multi-step logic
+- `DATE_TRUNC` for time-series bucketing
+- `EXTRACT` for hour-of-day analysis
+- `CASE WHEN` for risk tier classification
+- Window-style self-join for per-customer anomaly baseline
+- `HAVING` for post-aggregation filtering
+
+---
+
+## Author
+
+**Rishabh Karthik Ramesh** — MS Computer Engineering, Virginia Tech  
+[LinkedIn](https://www.linkedin.com/in/rishabh-karthik-ramesh/) · [GitHub](https://github.com/RishCapitalent18) · rishabhkramesh@gmail.com
