@@ -6,7 +6,7 @@
 
 ## Business Questions Answered
 
-1. **Which categories drive the most spend — and the most fraud?**
+1. **Which categories drive the most spend and the most fraud?**
 2. **How does fraud rate change month over month?**
 3. **Which individual transactions are anomalously large for that customer?**
 4. **Which states have the highest fraud concentration?**
@@ -27,9 +27,9 @@
 
 ## Tech Stack
 
-- **DuckDB** — in-process SQL engine, no server required
-- **Python + pandas** — orchestration and CSV export
-- **SQL** — window functions, CTEs, aggregations, date truncation
+- **DuckDB** - in-process SQL engine, no server required
+- **Python + pandas** - orchestration and CSV export
+- **SQL** - window functions, CTEs, aggregations, date truncation
 
 ---
 
@@ -82,5 +82,5 @@ Synthetic credit card transactions dataset from [Kaggle](https://www.kaggle.com/
 
 ## Author
 
-**Rishabh Karthik Ramesh** — MS Computer Engineering, Virginia Tech  
+**Rishabh Karthik Ramesh** - MS Computer Engineering, Virginia Tech  
 [LinkedIn](https://www.linkedin.com/in/rishabh-karthik-ramesh/) · [GitHub](https://github.com/RishCapitalent18) · rishabhkramesh@gmail.com
